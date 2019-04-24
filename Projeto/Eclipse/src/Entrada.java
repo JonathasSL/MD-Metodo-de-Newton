@@ -207,7 +207,12 @@ public class Entrada extends javax.swing.JFrame {
         jBOk.setText("Ok");
         jBOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBOkActionPerformed(evt);
+                try {
+					jBOkActionPerformed(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -505,14 +510,13 @@ public class Entrada extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBFechaParentesesActionPerformed
 
-    private void jBOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOkActionPerformed
+    private void jBOkActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_jBOkActionPerformed
         // TODO add your handling code here:
-    	String expressaoStr = jLExpressao.getText();
+    	CMain cm = new CMain(expressaoFinal.getFunction(),expressaoFinal.toUnivariateString());
     	
     	
-    	
-    	UnivariateFunction expressao = null;
-        TelaResultado tr = new TelaResultado(expressaoStr);
+        TelaResultado tr = new TelaResultado();
+        tr.setCMain(expressaoFinal.getFunction(),expressaoFinal.toUnivariateString());
         tr.setVisible(true);
     }//GEN-LAST:event_jBOkActionPerformed
 

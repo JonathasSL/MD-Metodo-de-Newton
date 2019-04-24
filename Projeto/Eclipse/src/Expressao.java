@@ -43,10 +43,32 @@ public class Expressao {
     	return sb.toString();
     }
     
+    public String toUnivariateString() {
+    	StringBuilder sb = new StringBuilder();
+    	
+    	for(int i=0; i<polinomios.size(); i++) {
+    		sb.append(polinomios.get(i).univariateString());
+    		
+    		if(i<polinomios.size())
+    			if(operadores.get(i) == Operacao.ADICAO)
+    				sb.append("+");
+    			else if(operadores.get(i) == Operacao.SUBTRACAO)
+    				sb.append("-");
+    			else if(operadores.get(i) == Operacao.MULTIPLICACAO)
+    				sb.append("*");
+    			else if(operadores.get(i) == Operacao.DIVISAO)
+    				sb.append("/");
+    	}
+    	
+    	return sb.toString();
+    }
+    
     public UnivariateFunction getFunction() {
-    	UnivariateFunction f = new UnivariateFunction() {
+    	
+    		UnivariateFunction f = new UnivariateFunction() {
 			@Override
 			public double value(double x) {
+				
 				return 2 * Math.pow(x, 5) - 5 * Math.pow(x, 3) + 10;
 			}
 		};
