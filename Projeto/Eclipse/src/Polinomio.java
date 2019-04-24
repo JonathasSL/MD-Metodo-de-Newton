@@ -4,14 +4,14 @@ public class Polinomio {
 	private String polStr;
 	private double multiplicador;
 	private double potencia;
-	private boolean pot;
+	private boolean monomio;
 
 	public Polinomio(String polinomio) {
 		this.polStr = polinomio;
 
 		//Se tem potencia
 		if(polStr.contains("x^")) {
-			this.pot = false;
+			this.monomio = false;
 			StringTokenizer str = new StringTokenizer(polStr,"x^");
 
 			if(!polStr.startsWith("x^")) {
@@ -24,14 +24,19 @@ public class Polinomio {
 		}else {
 			//Se nao tem potencia
 			if(!polStr.contains("x^")) {
-				this.pot = true;
-				this.multiplicador = Double.parseDouble(polinomio);
+				this.monomio = true;
+				if (polStr.contains("x")) {
+					StringTokenizer str1 = new StringTokenizer(polStr,"x");
+					this.multiplicador = Double.parseDouble(str1.nextToken());					
+				}
+				else
+					this.multiplicador = Double.parseDouble(polStr);
 			}
 		}
 	}
 
 	public String toString() {
-		if(pot)
+		if(monomio)
 			return String.valueOf(multiplicador) + "x";
 		else
 			return String.valueOf(multiplicador) + "x^" + String.valueOf(potencia);
@@ -39,14 +44,6 @@ public class Polinomio {
 	
 	public String univariateString() {
 		StringBuilder sb = new StringBuilder();
-		if(pot) {
-			sb.append(multiplicador).append(" * Math.pow(x, 1)");
-		}
-		else {
-			sb.append(multiplicador).append(" * Math.pow(x, potencia)");
-		}
-			
-			
-		return sb.toString();
+		return null;
 	}
 }

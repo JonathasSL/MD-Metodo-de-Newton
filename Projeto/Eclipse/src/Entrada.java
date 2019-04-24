@@ -339,47 +339,47 @@ public class Entrada extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
             jLExpressao.setText("3");
-        }else 
-            jLExpressao.setText(jLExpressao.getText()+"3");
+        }else if (!jLExpressao.getText().endsWith("x"))
+        	jLExpressao.setText(jLExpressao.getText()+"3");
     }//GEN-LAST:event_jB3ActionPerformed
 
     private void jB6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB6ActionPerformed
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
             jLExpressao.setText("6");
-        }else 
-            jLExpressao.setText(jLExpressao.getText()+"6");
+        }else if (!jLExpressao.getText().endsWith("x"))
+        	jLExpressao.setText(jLExpressao.getText()+"6");
     }//GEN-LAST:event_jB6ActionPerformed
 
     private void jB9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB9ActionPerformed
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
             jLExpressao.setText("9");
-        }else 
-            jLExpressao.setText(jLExpressao.getText()+"9");
+        }else if (!jLExpressao.getText().endsWith("x"))
+        	jLExpressao.setText(jLExpressao.getText()+"9");
     }//GEN-LAST:event_jB9ActionPerformed
 
     private void jB4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB4ActionPerformed
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
             jLExpressao.setText("4");
-        }else 
-            jLExpressao.setText(jLExpressao.getText()+"4");
+        }else if (!jLExpressao.getText().endsWith("x"))
+        	jLExpressao.setText(jLExpressao.getText()+"4");
     }//GEN-LAST:event_jB4ActionPerformed
 
     private void jBMultiplicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMultiplicacaoActionPerformed
         if (nMonomio < 6) {
         	// TODO add your handling code here:
-//        	if(!jLExpressao.getText().equals(expressaoInit)&&
-//        			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
-//        		jLExpressao.setText(jLExpressao.getText()+"*");
-//        	}else{
-//        		//TODO add alert
-//        	}
-//        	novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
-//    		novoOperador();
-//    		sinalAnterior = jLExpressao.getText().length();
-    		nMonomio ++;
+        	if(!jLExpressao.getText().equals(expressaoInit)&&
+        			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
+        		jLExpressao.setText(jLExpressao.getText()+"*");
+        		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+        		novoOperador();
+        		sinalAnterior = jLExpressao.getText().length();
+        		nMonomio ++;
+        	}else{
+        		//TODO add alert
+        	}
         } else {
         	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
         
@@ -390,48 +390,48 @@ public class Entrada extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
             jLExpressao.setText("1");
-        }else 
-            jLExpressao.setText(jLExpressao.getText()+"1");
+        }else if (!jLExpressao.getText().endsWith("x"))
+        	jLExpressao.setText(jLExpressao.getText()+"1");
     }//GEN-LAST:event_jB1ActionPerformed
 
     private void jB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB2ActionPerformed
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
             jLExpressao.setText("2");
-        }else 
-            jLExpressao.setText(jLExpressao.getText()+"2");
+        }else if (!jLExpressao.getText().endsWith("x"))
+        	jLExpressao.setText(jLExpressao.getText()+"2");
     }//GEN-LAST:event_jB2ActionPerformed
 
     private void jB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB5ActionPerformed
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
             jLExpressao.setText("5");
-        }else 
-            jLExpressao.setText(jLExpressao.getText()+"5");
+        }else if (!jLExpressao.getText().endsWith("x"))
+        	jLExpressao.setText(jLExpressao.getText()+"5");
     }//GEN-LAST:event_jB5ActionPerformed
 
     private void jB7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB7ActionPerformed
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
             jLExpressao.setText("7");
-        }else 
-            jLExpressao.setText(jLExpressao.getText()+"7");
+        }else if (!jLExpressao.getText().endsWith("x"))
+    	jLExpressao.setText(jLExpressao.getText()+"7");
     }//GEN-LAST:event_jB7ActionPerformed
 
     private void jB8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB8ActionPerformed
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
             jLExpressao.setText("8");
-        }else 
-            jLExpressao.setText(jLExpressao.getText()+"8");
+        }else if (!jLExpressao.getText().endsWith("x"))
+        	jLExpressao.setText(jLExpressao.getText()+"8");
     }//GEN-LAST:event_jB8ActionPerformed
 
     private void jB0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB0ActionPerformed
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
             jLExpressao.setText("0");
-        }else 
-            jLExpressao.setText(jLExpressao.getText()+"0");
+        }else if (!jLExpressao.getText().endsWith("x"))
+        	jLExpressao.setText(jLExpressao.getText()+"0");
     }//GEN-LAST:event_jB0ActionPerformed
 
     private void jBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBxActionPerformed
@@ -475,13 +475,13 @@ public class Entrada extends javax.swing.JFrame {
         	if(!jLExpressao.getText().equals(expressaoInit)&&
         			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
         		jLExpressao.setText(jLExpressao.getText()+"+");
+        		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+        		novoOperador();
+        		sinalAnterior = jLExpressao.getText().length();
+        		nMonomio ++;
         	}else{
         		//TODO add alert
         	}
-        	novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
-    		novoOperador();
-    		sinalAnterior = jLExpressao.getText().length();
-    		nMonomio ++;
         } else {
         	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
         
@@ -494,13 +494,13 @@ public class Entrada extends javax.swing.JFrame {
         	if(!jLExpressao.getText().equals(expressaoInit)&&
         			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
         		jLExpressao.setText(jLExpressao.getText()+"-");
+        		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+        		novoOperador();
+        		sinalAnterior = jLExpressao.getText().length();
+        		nMonomio ++;
         	}else{
         		//TODO add alert
         	}
-        	novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
-    		novoOperador();
-    		sinalAnterior = jLExpressao.getText().length();
-    		nMonomio ++;
         } else {
         	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
         
