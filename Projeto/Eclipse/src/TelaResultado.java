@@ -12,17 +12,20 @@ import org.apache.commons.math3.analysis.UnivariateFunction;
  */
 public class TelaResultado extends javax.swing.JFrame {
 	public static String exp;
+	public CMain cm;
     /**
      * Creates new form TelaResultado
      */
-    public TelaResultado(String exp) {
-    	this.exp=exp;
+    public TelaResultado() {
         initComponents();
-//        String exp = Entrada.jLExpressao.getText();
-        
-        UnivariateFunction expressao = null;
-        CMain cm = new CMain();
-        
+    }
+    
+    public void setCMain(UnivariateFunction uf, String us) throws Exception {
+    	cm = new CMain(uf, us);
+    	cm.solveit(uf);
+    	for(int i=0; i<cm.checkIf.size() ; i++) {
+    		jTextPane1.setText(cm.checkIf.get(i).toString());
+    	}
     }
 
     /**
@@ -76,6 +79,8 @@ public class TelaResultado extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -103,7 +108,7 @@ public class TelaResultado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaResultado(exp).setVisible(true);
+                new TelaResultado().setVisible(true);
             }
         });
     }

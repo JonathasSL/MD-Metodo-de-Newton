@@ -45,8 +45,6 @@ public class Polinomio {
 		else {
 			sb.append(multiplicador).append(" * Math.pow(x, potencia)");
 		}
-			
-			
 		return sb.toString();
 	}
 }
