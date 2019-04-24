@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import javax.swing.JOptionPane;
+
 import org.apache.commons.math3.analysis.UnivariateFunction;
 
 /*
@@ -15,6 +17,7 @@ import org.apache.commons.math3.analysis.UnivariateFunction;
  * @author JÃ´nathas Leandro
  */
 public class Entrada extends javax.swing.JFrame {
+	private static int nMonomio;
     private String expressaoInit = "---";
     private Expressao expressaoFinal;
 //    private ArrayList<Polinomio> polinomios = new ArrayList<>();
@@ -27,6 +30,9 @@ public class Entrada extends javax.swing.JFrame {
      */
     public Entrada() {
         initComponents();
+        expressaoFinal = new Expressao();
+        sinalAnterior = 0;
+        nMonomio = 1;
     }
 
     /**
@@ -57,7 +63,7 @@ public class Entrada extends javax.swing.JFrame {
         jBClear = new javax.swing.JButton();
         jBAdicao = new javax.swing.JButton();
         jBSubtracao = new javax.swing.JButton();
-        jBAbreParenteses = new javax.swing.JButton();
+        jBPonto = new javax.swing.JButton();
         jBMultiplicacao = new javax.swing.JButton();
         jBDivisao = new javax.swing.JButton();
         jBOk = new javax.swing.JButton();
@@ -155,7 +161,7 @@ public class Entrada extends javax.swing.JFrame {
             }
         });
 
-        jBPotencia.setText("x^(");
+        jBPotencia.setText("x^");
         jBPotencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBPotenciaActionPerformed(evt);
@@ -183,10 +189,10 @@ public class Entrada extends javax.swing.JFrame {
             }
         });
 
-        jBAbreParenteses.setText("(");
-        jBAbreParenteses.addActionListener(new java.awt.event.ActionListener() {
+        jBPonto.setText(".");
+        jBPonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAbreParentesesActionPerformed(evt);
+                jBPonto(evt);
             }
         });
 
@@ -211,12 +217,12 @@ public class Entrada extends javax.swing.JFrame {
             }
         });
 
-        jBFechaParenteses.setText(")");
-        jBFechaParenteses.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBFechaParentesesActionPerformed(evt);
-            }
-        });
+//        jBFechaParenteses.setText(")");
+//        jBFechaParenteses.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                jBFechaParentesesActionPerformed(evt);
+//            }
+//        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -264,7 +270,7 @@ public class Entrada extends javax.swing.JFrame {
                             .addComponent(jBMultiplicacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBAbreParenteses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBPonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBFechaParenteses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBPotencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -310,7 +316,7 @@ public class Entrada extends javax.swing.JFrame {
                     .addComponent(jB6)
                     .addComponent(jBAdicao)
                     .addComponent(jBSubtracao)
-                    .addComponent(jBAbreParenteses))
+                    .addComponent(jBPonto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jB7)
@@ -362,12 +368,21 @@ public class Entrada extends javax.swing.JFrame {
     }//GEN-LAST:event_jB4ActionPerformed
 
     private void jBMultiplicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMultiplicacaoActionPerformed
-        // TODO add your handling code here:
-        if(!jLExpressao.getText().equals(expressaoInit)&&
-                !(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
-            jLExpressao.setText(jLExpressao.getText()+"*");
-        }else{
-            //TODO add alert
+        if (nMonomio < 6) {
+        	// TODO add your handling code here:
+//        	if(!jLExpressao.getText().equals(expressaoInit)&&
+//        			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
+//        		jLExpressao.setText(jLExpressao.getText()+"*");
+//        	}else{
+//        		//TODO add alert
+//        	}
+//        	novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+//    		novoOperador();
+//    		sinalAnterior = jLExpressao.getText().length();
+    		nMonomio ++;
+        } else {
+        	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
+        
         }
     }//GEN-LAST:event_jBMultiplicacaoActionPerformed
 
@@ -422,9 +437,10 @@ public class Entrada extends javax.swing.JFrame {
     private void jBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBxActionPerformed
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
-            jLExpressao.setText("x");
+        	jLExpressao.setText("x");
         }else 
-            jLExpressao.setText(jLExpressao.getText()+"x");
+        	if (!jLExpressao.getText().endsWith("x"))
+        		jLExpressao.setText(jLExpressao.getText()+"x");
     }//GEN-LAST:event_jBxActionPerformed
 
     private void jBClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBClearActionPerformed
@@ -434,76 +450,105 @@ public class Entrada extends javax.swing.JFrame {
 //	        	s.append(jLExpressao.getText().charAt(i));
 //	        jLExpressao.setText(s.toString());
 //    	}else if(jLExpressao.getText().length()==1)
-    		jLExpressao.setText(expressaoInit);        
+    		jLExpressao.setText(expressaoInit);
+    		expressaoFinal = new Expressao();
     }//GEN-LAST:event_jBClearActionPerformed
 
     private void jBPotenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPotenciaActionPerformed
-        // TODO add your handling code here:
-        if(!jLExpressao.getText().equals(expressaoInit)&&
-                !(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
-            jLExpressao.setText(jLExpressao.getText()+"^(");
-        }else{
-            //TODO add alert
-        }
-    }//GEN-LAST:event_jBPotenciaActionPerformed
+        	// TODO add your handling code here:
+        	if(!jLExpressao.getText().equals(expressaoInit)&&
+        			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
+        		jLExpressao.setText(jLExpressao.getText()+"^");
+        	}else{
+        		//TODO add alert
+        	}
+        	//novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+    		//novoOperador();
+//    		sinalAnterior = jLExpressao.getText().length();
+//    		nMonomio ++;
+    		}
+    //GEN-LAST:event_jBPotenciaActionPerformed
 
     private void jBAdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdicaoActionPerformed
-        // TODO add your handling code here:
-        if(!jLExpressao.getText().equals(expressaoInit)&&
-                !(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
-            jLExpressao.setText(jLExpressao.getText()+"+");
-        }else{
-            //TODO add alert
+        if (nMonomio < 6) {
+        	// TODO add your handling code here:
+        	if(!jLExpressao.getText().equals(expressaoInit)&&
+        			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
+        		jLExpressao.setText(jLExpressao.getText()+"+");
+        	}else{
+        		//TODO add alert
+        	}
+        	novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+    		novoOperador();
+    		sinalAnterior = jLExpressao.getText().length();
+    		nMonomio ++;
+        } else {
+        	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
+        
         }
     }//GEN-LAST:event_jBAdicaoActionPerformed
 
     private void jBSubtracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSubtracaoActionPerformed
-        // TODO add your handling code here:
-        if(!jLExpressao.getText().equals(expressaoInit)&&
-                !(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
-            jLExpressao.setText(jLExpressao.getText()+"-");
-        }else{
-            //TODO add alert
+        if (nMonomio < 6) {
+        	// TODO add your handling code here:
+        	if(!jLExpressao.getText().equals(expressaoInit)&&
+        			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
+        		jLExpressao.setText(jLExpressao.getText()+"-");
+        	}else{
+        		//TODO add alert
+        	}
+        	novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+    		novoOperador();
+    		sinalAnterior = jLExpressao.getText().length();
+    		nMonomio ++;
+        } else {
+        	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
+        
         }
     }//GEN-LAST:event_jBSubtracaoActionPerformed
 
     private void jBDivisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDivisaoActionPerformed
         // TODO add your handling code here:
-        if(!jLExpressao.getText().equals(expressaoInit)&&
-                !(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
-            jLExpressao.setText(jLExpressao.getText()+"/");
+            if (nMonomio < 6) {
+            	if(!jLExpressao.getText().equals(expressaoInit)&&
+            			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
+            		jLExpressao.setText(jLExpressao.getText()+"/");
+            		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+            		novoOperador();
+            		sinalAnterior = jLExpressao.getText().length();
+            		nMonomio ++;
+            	}else{
+            		//TODO add alert
+            	}
+            } else {
+            	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
+            }
             
-            novoPolinomio(sinalAnterior,jLExpressao.getText().length());
-            novoOperador();
-            sinalAnterior = jLExpressao.getText().length();
-        }else{
-            //TODO add alert
-        }
     }//GEN-LAST:event_jBDivisaoActionPerformed
 
-    private void jBAbreParentesesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAbreParentesesActionPerformed
+    private void jBPonto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAbreParentesesActionPerformed
         // TODO add your handling code here:
         if(jLExpressao.getText().equals(expressaoInit)){
-            jLExpressao.setText("(");
+            jLExpressao.setText(".");
         }else{
-            if(jLExpressao.getText().endsWith("(")||jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")){
+            if(jLExpressao.getText().endsWith(".")||jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")){
                 //TODO add alert
             }else
-                jLExpressao.setText(jLExpressao.getText()+"(");
+                jLExpressao.setText(jLExpressao.getText()+".");
         }
     }//GEN-LAST:event_jBAbreParentesesActionPerformed
 
-    private void jBFechaParentesesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFechaParentesesActionPerformed
-        // TODO add your handling code here:
-        if(jLExpressao.getText().equals(expressaoInit)){
-            jLExpressao.setText(")");
-        }else{
-            if(jLExpressao.getText().endsWith("(")||jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")){
-                //TODO add alert
-            }else
-                jLExpressao.setText(jLExpressao.getText()+")");
-        }
-    }//GEN-LAST:event_jBFechaParentesesActionPerformed
+//    private void jBFechaParentesesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFechaParentesesActionPerformed
+//        // TODO add your handling code here:
+//        if(jLExpressao.getText().equals(expressaoInit)){
+//            jLExpressao.setText(")");
+//        }else{
+//            if(jLExpressao.getText().endsWith("(")||jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")){
+//                //TODO add alert
+//            }else
+//                jLExpressao.setText(jLExpressao.getText()+")");
+//        }
+//    }//GEN-LAST:event_jBFechaParentesesActionPerformed
 
     private void jBOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOkActionPerformed
         // TODO add your handling code here:
@@ -517,6 +562,9 @@ public class Entrada extends javax.swing.JFrame {
     }//GEN-LAST:event_jBOkActionPerformed
 
     private void novoPolinomio(int sinalAnterior, int sinalPosterior) {
+//    	if (sinalAnterior == 0) {
+//    	}
+    	System.out.println((String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior));
     	expressaoFinal.addPolinomio(new Polinomio( (String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior) ) );
     }
     
@@ -581,7 +629,7 @@ public class Entrada extends javax.swing.JFrame {
     private javax.swing.JButton jB7;
     private javax.swing.JButton jB8;
     private javax.swing.JButton jB9;
-    private javax.swing.JButton jBAbreParenteses;
+    private javax.swing.JButton jBPonto;
     private javax.swing.JButton jBAdicao;
     private javax.swing.JButton jBClear;
     private javax.swing.JButton jBDivisao;

@@ -11,7 +11,11 @@ public class Expressao {
     	this.operadores.add(operador);
     }
     
-    public void add(Polinomio polinomio,Operacao operador) {
+    public Expressao() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void add(Polinomio polinomio,Operacao operador) {
     	this.polinomios.add(polinomio);
     	this.operadores.add(operador);
     }
