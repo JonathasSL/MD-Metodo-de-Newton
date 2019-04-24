@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.StringTokenizer;
+
+import org.apache.commons.math3.analysis.UnivariateFunction;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,7 +15,11 @@ import java.util.StringTokenizer;
  * @author Jônathas Leandro
  */
 public class Entrada extends javax.swing.JFrame {
-    String expressaoInit = "---";
+    private String expressaoInit = "---";
+    private Expressao expressaoFinal;
+//    private ArrayList<Polinomio> polinomios = new ArrayList<>();
+//    private ArrayList<Operacao> operadores = new ArrayList<>();
+    private int sinalAnterior;
     
     
     /**
@@ -421,12 +428,12 @@ public class Entrada extends javax.swing.JFrame {
     }//GEN-LAST:event_jBxActionPerformed
 
     private void jBClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBClearActionPerformed
-    	StringBuilder s = new StringBuilder();
-    	if(jLExpressao.getText().length()>1 && jLExpressao.getText()!= expressaoInit) {
-	        for (int i=0 ; i<jLExpressao.getText().length()-1; i++)
-	        	s.append(jLExpressao.getText().charAt(i));
-	        jLExpressao.setText(s.toString());
-    	}else if(jLExpressao.getText().length()==1)
+//    	StringBuilder s = new StringBuilder();
+//    	if(jLExpressao.getText().length()>1 && jLExpressao.getText()!= expressaoInit) {
+//	        for (int i=0 ; i<jLExpressao.getText().length()-1; i++)
+//	        	s.append(jLExpressao.getText().charAt(i));
+//	        jLExpressao.setText(s.toString());
+//    	}else if(jLExpressao.getText().length()==1)
     		jLExpressao.setText(expressaoInit);        
     }//GEN-LAST:event_jBClearActionPerformed
 
@@ -496,12 +503,34 @@ public class Entrada extends javax.swing.JFrame {
 
     private void jBOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOkActionPerformed
         // TODO add your handling code here:
-    	String expressao = jLExpressao.getText();
-    	StringTokenizer st = new StringTokenizer(expressao); 
-        TelaResultado tr = new TelaResultado();
+    	String expressaoStr = jLExpressao.getText();
+    	
+    	
+    	
+    	UnivariateFunction expressao = null;
+        TelaResultado tr = new TelaResultado(expressaoStr);
         tr.setVisible(true);
     }//GEN-LAST:event_jBOkActionPerformed
 
+    private void novoPolinomio(int sinalAnterior, int sinalPosterior) {
+    	expressaoFinal.addPolinomio(new Polinomio( (String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior) ) );
+    }
+    
+    private void novoOperador() {
+    	if(jLExpressao.getText().endsWith("+"))
+    		expressaoFinal.addOperador(Operacao.ADICAO);
+    	else if(jLExpressao.getText().endsWith("-"))
+    		expressaoFinal.addOperador(Operacao.SUBTRACAO);
+    	else if(jLExpressao.getText().endsWith("*"))
+    		expressaoFinal.addOperador(Operacao.MULTIPLICACAO);
+    	else if(jLExpressao.getText().endsWith("/"))
+    		expressaoFinal.addOperador(Operacao.DIVISAO);
+//    	else if(jLExpressao.getText().endsWith("("))
+//    		operadores.add(Operacao.ABRE_PARENTESES);
+//    	else if(jLExpressao.getText().endsWith(")"))
+//    		operadores.add(Operacao.FECHA_PARENTESES);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -559,7 +588,7 @@ public class Entrada extends javax.swing.JFrame {
     private javax.swing.JButton jBSubtracao;
     private javax.swing.JButton jBx;
     private javax.swing.JLabel jLEntrada;
-    private javax.swing.JLabel jLExpressao;
+    public javax.swing.JLabel jLExpressao;
     private javax.swing.JLabel jLTitulo;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
