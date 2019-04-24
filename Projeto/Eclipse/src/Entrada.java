@@ -513,18 +513,18 @@ public class Entrada extends javax.swing.JFrame {
     }//GEN-LAST:event_jBOkActionPerformed
 
     private void novoPolinomio(int sinalAnterior, int sinalPosterior) {
-    	expressaoFinal.add(new Polinomio( (String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior) ) );
+    	expressaoFinal.addPolinomio(new Polinomio( (String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior) ) );
     }
     
     private void novoOperador() {
     	if(jLExpressao.getText().endsWith("+"))
-    		operadores.add(Operacao.ADICAO);
+    		expressaoFinal.addOperador(Operacao.ADICAO);
     	else if(jLExpressao.getText().endsWith("-"))
-    		operadores.add(Operacao.SUBTRACAO);
+    		expressaoFinal.addOperador(Operacao.SUBTRACAO);
     	else if(jLExpressao.getText().endsWith("*"))
-    		operadores.add(Operacao.MULTIPLICACAO);
+    		expressaoFinal.addOperador(Operacao.MULTIPLICACAO);
     	else if(jLExpressao.getText().endsWith("/"))
-    		operadores.add(Operacao.DIVISAO);
+    		expressaoFinal.addOperador(Operacao.DIVISAO);
 //    	else if(jLExpressao.getText().endsWith("("))
 //    		operadores.add(Operacao.ABRE_PARENTESES);
 //    	else if(jLExpressao.getText().endsWith(")"))

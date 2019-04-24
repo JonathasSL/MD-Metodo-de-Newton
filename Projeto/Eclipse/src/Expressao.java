@@ -44,6 +44,12 @@ public class Expressao {
     }
     
     public UnivariateFunction getFunction() {
-		return null;
+    	UnivariateFunction f = new UnivariateFunction() {
+			@Override
+			public double value(double x) {
+				return 2 * Math.pow(x, 5) - 5 * Math.pow(x, 3) + 10;
+			}
+		};
+		return f;
     }
 }
