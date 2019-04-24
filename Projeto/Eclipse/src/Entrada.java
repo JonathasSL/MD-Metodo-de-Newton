@@ -472,6 +472,10 @@ public class Entrada extends javax.swing.JFrame {
         if(!jLExpressao.getText().equals(expressaoInit)&&
                 !(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
             jLExpressao.setText(jLExpressao.getText()+"/");
+            
+            novoPolinomio(sinalAnterior,jLExpressao.getText().length());
+            novoOperador();
+            sinalAnterior = jLExpressao.getText().length();
         }else{
             //TODO add alert
         }
