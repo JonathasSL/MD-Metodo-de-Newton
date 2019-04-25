@@ -72,8 +72,7 @@ public class Expressao {
     		UnivariateFunction f = new UnivariateFunction() {
 			@Override
 			public double value(double x) {
-				
-				return 2 * Math.pow(x, 5) - 5 * Math.pow(x, 3) + 10;
+				return 1 * Math.pow(x, 3.0) + 4 * Math.pow(x, 2.0) + 1 * Math.pow(x, 1.0) + 27;
 			}
 		};
 		return f;
