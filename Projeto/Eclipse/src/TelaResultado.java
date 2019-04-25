@@ -23,9 +23,11 @@ public class TelaResultado extends javax.swing.JFrame {
     public void setCMain(UnivariateFunction uf, String us) throws Exception {
     	cm = new CMain(uf, us);
     	cm.solveit(uf);
+    	StringBuilder sb = new StringBuilder();
     	for(int i=0; i<cm.checkIf.size() ; i++) {
-    		jTextPane1.setText(cm.checkIf.get(i).toString());
+    		sb.append(cm.checkIf.get(i).toString());
     	}
+    	jTextPane1.setText(sb.toString());
     }
 
     /**
