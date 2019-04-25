@@ -33,6 +33,7 @@ public class Polinomio {
 				}else {
 					this.multiplicador = Double.parseDouble(polStr);
 					this.potencia = 0; //0 para explicitar que não tem variavel
+					noVariable = true;
 				}
 			}
 		}
@@ -51,13 +52,13 @@ public class Polinomio {
 			sb.append(multiplicador).append(" * Math.pow(x, 1)");
 		}
 		else {
-			sb.append(multiplicador).append(" * Math.pow(x, potencia)");
+			sb.append(multiplicador).append(" * Math.pow(x, "+potencia+")");
 		}
 		return sb.toString();
 	}
 
 	public double getResultado(Double x) {
-		if(this.potencia==0)
+		if(!hasPotency)
 			return multiplicador;
 		else
 			return multiplicador * Math.pow(x, potencia);
