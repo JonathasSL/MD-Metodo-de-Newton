@@ -74,14 +74,28 @@ public class CMain {
 		return str;
 	}
 	
+	static String reConvertString(String str) {
+		String aux = str;
+		int e = str.indexOf("x");
+		System.out.println("e"+e);
+		str = str.replaceAll("[x\\^]", "Math.pow\\(\\x\\,");
+		str = str.replaceAll("[(?:\\,(?=0-9))]", "1");
+		return str;
+	}
+	
 	
 	//---------FUNCTION THAT ACTUALLY ISOLATE ROOTS, NEWTON RAPHSON METHOD----------
 	static void solveit(UnivariateFunction f) throws Exception {
 		double intervalStart = -10;
 		double intervalSize = 0.1;
+		System.out.println(str);
 		Cderivada = convertString(str);
+		System.out.println(Cderivada);
 		Cderivada = derivador(Cderivada);
-		resp1 = str;
+		System.out.println("c"+Cderivada);
+		resp1 = Cderivada;
+		resp1=reConvertString(resp1);
+		System.out.println("STRING" + resp1);
 		str1 = str;
 		//LOOP
 		while (intervalStart <= 10) {
@@ -94,23 +108,24 @@ public class CMain {
 			//------CONDITIONS-------
 			if (Math.signum(f.value(intervalStart)) * Math.signum(f.value(intervalStart + intervalSize)) == 0) {
 				double firstResult = solver.solve(100, f, intervalStart, intervalStart + intervalSize);
-				System.out.printf("raiz confirmada! x = %2.8f\n", firstResult);
+				System.out.printf("raiz confirmada! x = %3.8f\n", firstResult);
 				checkIf.add(firstResult);
 			} 
 			if (Math.signum(f.value(intervalStart)) * Math.signum(f.value(intervalStart + intervalSize)) < 0) {
 				//double secondResult = solver.solve(100, f, intervalStart, intervalStart + intervalSize);
 				x0 = fOne < fTwo ? fOne : fTwo;
 				double fx0 = replaceXAndCalculate(str1, x0);
-				double fdx0 = replaceXAndCalculate(resp1, x0);
+				double fdx0 = replaceXAndCalculate(Cderivada, x0);
 				double xn = x0;
-				int count = 0;
-				while(Math.abs(xn) > 0.00000001 && count <= 100) {
+				//int count = 0;
+				while(Math.abs(xn) > 0.00000001) {
 					x1 = x0-(fx0/fdx0);
-					xn = x1-x0;
+					xn = Math.abs(x1-x0);
 					x0 = x1;
-					count++;
+					fx0 = replaceXAndCalculate(str1, x0);
+					fdx0 = replaceXAndCalculate(Cderivada, x0);
 				}
-				System.out.printf("Provável raiz. Newton x = %2.8f\n", x0);
+				System.out.printf("Raiz aproximada pelo método de Newton = %2.8f\n", x0);
 				checkIf.add(x0);
 			} 
 			if (Math.signum(f.value(intervalStart)) * Math.signum(f.value(intervalStart + intervalSize)) != 0
@@ -133,7 +148,7 @@ public class CMain {
 				while(Math.abs(x0-x1) > 0.00000001) {
 					x1 = x0-(fx0/fdx0);
 					x0 = x1;
-					System.out.println("passei aqui");
+					System.out.println("passei aqui em cima");
 				}
 				System.out.printf("Provavel raiz. Newton  a x = %2.8f", x0);
 			}
