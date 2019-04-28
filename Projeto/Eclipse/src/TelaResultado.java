@@ -25,7 +25,7 @@ public class TelaResultado extends javax.swing.JFrame {
     	cm.solveit(uf);
     	StringBuilder sb = new StringBuilder();
     	for(int i=0; i<cm.checkIf.size() ; i++) {
-    		sb.append(cm.checkIf.get(i).toString());
+    		sb.append(cm.checkIf.get(i).toString()+"\n");
     	}
     	jTextPane1.setText(sb.toString());
     }

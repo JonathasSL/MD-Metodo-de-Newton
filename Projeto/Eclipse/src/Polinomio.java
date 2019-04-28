@@ -4,7 +4,6 @@ public class Polinomio {
 	private String polStr;
 	private double multiplicador;
 	private double potencia;
-	private boolean hasPotency;
 	private boolean noVariable;
 
 	public Polinomio(String polinomio) {
@@ -12,7 +11,6 @@ public class Polinomio {
 
 		//Se tem potencia
 		if(polStr.contains("x^")) {
-			this.hasPotency = false;
 			StringTokenizer str = new StringTokenizer(polStr,"x^");
 
 			if(!polStr.startsWith("x^")) {
@@ -25,11 +23,11 @@ public class Polinomio {
 		}else {
 			//Se nao tem potencia
 			if(!polStr.contains("x^")) {
-				this.hasPotency = true;
+				this.potencia = 1;
 				if(polStr.contains("x")) {
 					StringTokenizer str1 = new StringTokenizer(polStr,"x");
-					this.multiplicador = Double.parseDouble(str1.nextToken());
-					this.potencia = 1;
+					if(str1.hasMoreTokens())
+						this.multiplicador = Double.parseDouble(str1.nextToken());
 				}else {
 					this.multiplicador = Double.parseDouble(polStr);
 					this.potencia = 0; //0 para explicitar que não tem variavel
@@ -40,7 +38,7 @@ public class Polinomio {
 	}
 
 	public String toString() {
-		if(hasPotency)
+		if(potencia == 1)
 			return String.valueOf(multiplicador) + "x";
 		else
 			return String.valueOf(multiplicador) + "x^" + String.valueOf(potencia);
@@ -48,7 +46,7 @@ public class Polinomio {
 
 	public String univariateString() {
 		StringBuilder sb = new StringBuilder();
-		if(hasPotency) {
+		if(potencia == 1) {
 			sb.append(multiplicador).append(" * Math.pow(x, 1)");
 		}
 		else {
@@ -58,7 +56,7 @@ public class Polinomio {
 	}
 
 	public double getResultado(Double x) {
-		if(!hasPotency)
+		if((potencia == 1))
 			return multiplicador;
 		else
 			return multiplicador * Math.pow(x, potencia);
