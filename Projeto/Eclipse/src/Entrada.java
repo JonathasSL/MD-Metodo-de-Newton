@@ -217,7 +217,7 @@ public class Entrada extends javax.swing.JFrame {
             }
         });
 
-//        jBFechaParenteses.setText(")");
+        jBFechaParenteses.setText(" ");
 //        jBFechaParenteses.addActionListener(new java.awt.event.ActionListener() {
 //            public void actionPerformed(java.awt.event.ActionEvent evt) {
 //                jBFechaParentesesActionPerformed(evt);
@@ -370,15 +370,12 @@ public class Entrada extends javax.swing.JFrame {
     private void jBMultiplicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMultiplicacaoActionPerformed
         if (nMonomio < 6) {
 
-        	if(!jLExpressao.getText().equals(expressaoInit)&&
-        			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
+        	if(inputAvailable()){
         		jLExpressao.setText(jLExpressao.getText()+"*");
         		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
         		novoOperador();
         		sinalAnterior = jLExpressao.getText().length();
         		nMonomio ++;
-        	}else{
-
         	}
         } else {
         	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
@@ -450,6 +447,8 @@ public class Entrada extends javax.swing.JFrame {
 //	        	s.append(jLExpressao.getText().charAt(i));
 //	        jLExpressao.setText(s.toString());
 //    	}else if(jLExpressao.getText().length()==1)
+    	
+    	//Reseta a memoria e o Lable expressao para os dados iniciais
     		jLExpressao.setText(expressaoInit);
             expressaoFinal = new Expressao();
             sinalAnterior = 0;
@@ -474,15 +473,12 @@ public class Entrada extends javax.swing.JFrame {
     private void jBAdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdicaoActionPerformed
         if (nMonomio < 6) {
 
-        	if(!jLExpressao.getText().equals(expressaoInit)&&
-        			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
+        	if(inputAvailable()){
         		jLExpressao.setText(jLExpressao.getText()+"+");
         		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
         		novoOperador();
         		sinalAnterior = jLExpressao.getText().length();
         		nMonomio ++;
-        	}else{
-
         	}
         } else {
         	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
@@ -493,15 +489,12 @@ public class Entrada extends javax.swing.JFrame {
     private void jBSubtracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSubtracaoActionPerformed
         if (nMonomio < 6) {
 
-        	if(!jLExpressao.getText().equals(expressaoInit)&&
-        			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
+        	if(inputAvailable()){
         		jLExpressao.setText(jLExpressao.getText()+"-");
         		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
         		novoOperador();
         		sinalAnterior = jLExpressao.getText().length();
         		nMonomio ++;
-        	}else{
-
         	}
         } else {
         	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
@@ -512,16 +505,13 @@ public class Entrada extends javax.swing.JFrame {
     private void jBDivisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDivisaoActionPerformed
 
             if (nMonomio < 6) {
-            	if(!jLExpressao.getText().equals(expressaoInit)&&
-            			!(jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")||jLExpressao.getText().endsWith("("))){
+            	if(inputAvailable()){
             		jLExpressao.setText(jLExpressao.getText()+"/");
             		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
             		novoOperador();
             		sinalAnterior = jLExpressao.getText().length();
             		nMonomio ++;
-            	}else{
-
-            	}
+            		}
             } else {
             	JOptionPane.showMessageDialog(null, "Quantidade máxima atingida!");
             }
@@ -529,17 +519,10 @@ public class Entrada extends javax.swing.JFrame {
     }//GEN-LAST:event_jBDivisaoActionPerformed
 
     private void jBPonto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAbreParentesesActionPerformed
-
-    	if (!jLExpressao.getText().equals(expressaoInit)) {
-    		if(jLExpressao.getText().equals(expressaoInit)){
-    			jLExpressao.setText(".");
-    		}else{
-    			if(jLExpressao.getText().endsWith(".")||jLExpressao.getText().endsWith("+")||jLExpressao.getText().endsWith("-")||jLExpressao.getText().endsWith("*")||jLExpressao.getText().endsWith("/")){
-
-    			}else
-    				jLExpressao.setText(jLExpressao.getText()+".");
-    		}    		
-    	}
+    	//escreve o ponto se for possivel
+    	if (inputAvailable() && !jLExpressao.getText().endsWith("x") && !jLExpressao.getText().endsWith(".")) {
+    			jLExpressao.setText(jLExpressao.getText()+".");
+    		}
     }//GEN-LAST:event_jBAbreParentesesActionPerformed
 
 //    private void jBFechaParentesesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFechaParentesesActionPerformed
@@ -558,25 +541,25 @@ public class Entrada extends javax.swing.JFrame {
 
 //    	CMain cm = new CMain(expressaoFinal.getFunction(),expressaoFinal.toUnivariateString());
     	novoPolinomio(sinalAnterior,jLExpressao.getText().length());
-//    	System.out.println(expressaoFinal.toString());
+//    	System.out.println(jLExpressao.getText());
         TelaResultado tr = new TelaResultado();
         tr.setVisible(true);
         try {
         	//Chamando metodo para preencher campo de resposta
 			tr.setCMain(expressaoFinal.getFunction(),expressaoFinal.toUnivariateString());
 		} catch (Exception e) {
-
 			e.printStackTrace();
 		}
+        this.setVisible(false);
     }//GEN-LAST:event_jBOkActionPerformed
 
+    //Separa o ultimo polinomio escrito na tela 
     private void novoPolinomio(int sinalAnterior, int sinalPosterior) {
-//    	if (sinalAnterior == 0) {
-//    	}
-    	System.out.println((String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior));
+//    	System.out.println((String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior));
     	expressaoFinal.addPolinomio(new Polinomio( (String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior) ) );
     }
     
+    //Salva o ultimo operador +, -, *, ou / no objeto expressaoFinal
     private void novoOperador() {
     	if(jLExpressao.getText().endsWith("+"))
     		expressaoFinal.addOperador(Operacao.ADICAO);
@@ -590,6 +573,21 @@ public class Entrada extends javax.swing.JFrame {
 //    		operadores.add(Operacao.ABRE_PARENTESES);
 //    	else if(jLExpressao.getText().endsWith(")"))
 //    		operadores.add(Operacao.FECHA_PARENTESES);
+    }
+
+    //testa se é possivel escrever o input selecionado
+    private boolean inputAvailable() {
+    	//testa se o ultimo char inserido é sinal ou a expressao inicial
+    	if(!jLExpressao.getText().equals(expressaoInit) && 
+    			!(jLExpressao.getText().endsWith("+") || 
+    					jLExpressao.getText().endsWith("-") ||
+    					jLExpressao.getText().endsWith("*") ||
+    					jLExpressao.getText().endsWith("/") ||
+    					jLExpressao.getText().endsWith("^") ||
+    					jLExpressao.getText().endsWith("."))) {
+    		return true;
+    	}
+    	return false;
     }
     
     /**
