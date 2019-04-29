@@ -25,13 +25,19 @@ public class Polinomio {
 			if(!polStr.contains("x^")) {
 				this.potencia = 1;
 				if(polStr.contains("x")) {
-					StringTokenizer str1 = new StringTokenizer(polStr,"x");
-					if(str1.hasMoreTokens())
-						this.multiplicador = Double.parseDouble(str1.nextToken());
+					if(polStr.length()>1)
+						this.multiplicador = Double.parseDouble(polStr.replace("x", ""));
+					else
+						this.multiplicador = 1;
 				}else {
-					this.multiplicador = Double.parseDouble(polStr);
-					this.potencia = 0; //0 para explicitar que não tem variavel
 					noVariable = true;
+					if(polStr.contains("^")) {
+						StringTokenizer str1 = new StringTokenizer(polStr,"^");
+						this.multiplicador = Double.parseDouble(str1.nextToken());
+					} else {
+						this.multiplicador = Double.parseDouble(polStr);
+						this.potencia = 1; //1 para explicitar que não tem variavel
+					}
 				}
 			}
 		}
@@ -39,9 +45,9 @@ public class Polinomio {
 
 	public String toString() {
 		if(potencia == 1)
-			return String.valueOf(multiplicador) + "x";
+			return String.valueOf(multiplicador) + "*x";
 		else
-			return String.valueOf(multiplicador) + "x^" + String.valueOf(potencia);
+			return String.valueOf(multiplicador) + "*x^" + String.valueOf(potencia);
 	}
 
 	public String univariateString() {

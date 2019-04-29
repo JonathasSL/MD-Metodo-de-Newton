@@ -83,7 +83,6 @@ public class CMain {
 		return str;
 	}
 	
-	
 	//---------FUNCTION THAT ACTUALLY ISOLATE ROOTS, NEWTON RAPHSON METHOD----------
 	static void solveit(UnivariateFunction f) throws Exception {
 		double intervalStart = -10;
@@ -202,10 +201,20 @@ public class CMain {
 	public static void main(String[] args) {
 		CMain executar = new CMain(f, "1 * Math.pow(x, 3.0) + 4 * Math.pow(x, 2.0) + 1 * Math.pow(x, 1.0) + 27");
 		try {
+			
 			CMain.solveit(f);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		TelaResultado tr = new TelaResultado();
+        tr.setVisible(true);
+        try {
+        	//Chamando metodo para preencher campo de resposta
+			tr.setCMain(executar.getF(),executar.getStr());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
