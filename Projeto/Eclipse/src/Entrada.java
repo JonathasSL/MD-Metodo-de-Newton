@@ -372,7 +372,7 @@ public class Entrada extends javax.swing.JFrame {
 
         	if(inputAvailable()){
         		jLExpressao.setText(jLExpressao.getText()+"*");
-        		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+        		expressaoFinal.addPolinomio(novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1));
         		novoOperador();
         		sinalAnterior = jLExpressao.getText().length();
         		nMonomio ++;
@@ -475,7 +475,7 @@ public class Entrada extends javax.swing.JFrame {
 
         	if(inputAvailable()){
         		jLExpressao.setText(jLExpressao.getText()+"+");
-        		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+        		expressaoFinal.addPolinomio(novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1));
         		novoOperador();
         		sinalAnterior = jLExpressao.getText().length();
         		nMonomio ++;
@@ -491,7 +491,7 @@ public class Entrada extends javax.swing.JFrame {
 
         	if(inputAvailable()){
         		jLExpressao.setText(jLExpressao.getText()+"-");
-        		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+        		expressaoFinal.addPolinomio(novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1));
         		novoOperador();
         		sinalAnterior = jLExpressao.getText().length();
         		nMonomio ++;
@@ -507,7 +507,7 @@ public class Entrada extends javax.swing.JFrame {
             if (nMonomio < 6) {
             	if(inputAvailable()){
             		jLExpressao.setText(jLExpressao.getText()+"/");
-            		novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1);
+            		expressaoFinal.addPolinomio(novoPolinomio(sinalAnterior, jLExpressao.getText().length() - 1));
             		novoOperador();
             		sinalAnterior = jLExpressao.getText().length();
             		nMonomio ++;
@@ -539,8 +539,7 @@ public class Entrada extends javax.swing.JFrame {
 
     private void jBOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOkActionPerformed
 
-//    	CMain cm = new CMain(expressaoFinal.getFunction(),expressaoFinal.toUnivariateString());
-    	novoPolinomio(sinalAnterior,jLExpressao.getText().length());
+    	expressaoFinal.addPolinomio(novoPolinomio(sinalAnterior,jLExpressao.getText().length()));
 //    	System.out.println(jLExpressao.getText());
         TelaResultado tr = new TelaResultado();
         tr.setVisible(true);
@@ -553,10 +552,20 @@ public class Entrada extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jBOkActionPerformed
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //Separa o ultimo polinomio escrito na tela 
-    private void novoPolinomio(int sinalAnterior, int sinalPosterior) {
+    private Polinomio novoPolinomio(int sinalAnterior, int sinalPosterior) {
 //    	System.out.println((String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior));
-    	expressaoFinal.addPolinomio(new Polinomio( (String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior) ) );
+    	return new Polinomio( (String) jLExpressao.getText().subSequence(sinalAnterior, sinalPosterior) ) ;
     }
     
     //Salva o ultimo operador +, -, *, ou / no objeto expressaoFinal
